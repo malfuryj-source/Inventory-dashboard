@@ -133,7 +133,8 @@ elif page == "Inventory Table":
     
     st.subheader("📋 Full Inventory")
     
-    st.dataframe(df,use_container_width=True
+    st.dataframe(df,
+                 use_container_width=True
 )
 
 elif page == "AI Assistant":
