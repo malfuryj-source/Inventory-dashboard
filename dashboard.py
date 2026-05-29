@@ -145,6 +145,6 @@ if page == "AI Assistant":
 )
 
     if question:
-    st.info(
+        st.info(
         "AI assistant will be connected next."
 )
