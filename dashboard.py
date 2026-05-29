@@ -12,6 +12,7 @@ def get_status(row):
         return "Over Stock"
     else:
         return "Normal"
+df["Status"] = df.apply(get_status, axis=1)
 
 total_stock_value = df["Stock Value"].sum()
 low_stock_count = len(df[df["Current Stock"] < df["Min Stock"]])
