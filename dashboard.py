@@ -5,6 +5,23 @@ page_title="Inventory Dashboard",
 page_icon="📦",
 layout="wide"
 )
+# Sidebar Navigation
+
+st.sidebar.title("📦 Inventory Control")
+
+st.sidebar.caption(
+"Daily Stock Monitoring System"
+)
+
+page = st.sidebar.radio(
+"Navigation",
+[
+"Dashboard",
+"Critical Items",
+"Inventory Table",
+"AI Assistant"
+]
+)
 
 st.markdown("""
 <style>
@@ -22,7 +39,7 @@ border: 1px solid #4CAF50;
 padding: 15px;
 border-radius: 10px;
 }
-</style>
+</style>    
 """, unsafe_allow_html=True)
 
 df = pd.read_excel("inventory.xlsx")
@@ -76,4 +93,73 @@ st.subheader("Current Stock by Item")
 
 st.bar_chart(
 df.set_index("Item Name")["Current Stock"]
+)
+if page == "Dashboard":
+
+st.subheader("Inventory Data")
+
+st.dataframe(
+df,
+use_container_width=True
+)
+
+st.subheader(
+"Stock Status Distribution"
+)
+
+status_counts = (
+df["Status"].value_counts()
+)
+
+st.bar_chart(status_counts)
+
+st.subheader(
+"Current Stock by Item"
+)
+
+st.bar_chart(
+df.set_index("Item Name")[
+"Current Stock"
+]
+)
+
+elif page == "Critical Items":
+
+st.subheader(
+"🚨 Critical Items"
+)
+
+critical_items = df[
+df["Status"] == "Low Stock"
+]
+
+st.dataframe(
+critical_items,
+use_container_width=True
+)
+
+elif page == "Inventory Table":
+
+st.subheader(
+"📋 Full Inventory"
+)
+
+st.dataframe(
+df,
+use_container_width=True
+)
+
+elif page == "AI Assistant":
+
+st.subheader(
+"🤖 AI Assistant"
+)
+
+question = st.text_input(
+"Ask about inventory"
+)
+
+if question:
+st.info(
+"AI assistant will be connected next."
 )
