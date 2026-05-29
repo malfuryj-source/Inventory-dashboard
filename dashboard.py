@@ -116,7 +116,7 @@ if page == "Dashboard":
         "Current Stock"
     ]
 )
-elif page == "Critical Items":
+if page == "Critical Items":
 
     st.subheader(
     "🚨 Critical Items")
@@ -130,7 +130,7 @@ st.dataframe(
     use_container_width=True
 )
 
-elif page == "Inventory Table":
+if page == "Inventory Table":
     
     st.subheader("📋 Full Inventory")
     
@@ -138,7 +138,7 @@ elif page == "Inventory Table":
                  use_container_width=True
 )
 
-elif page == "AI Assistant":
+if page == "AI Assistant":
 
     st.subheader("🤖 AI Assistant")
 
