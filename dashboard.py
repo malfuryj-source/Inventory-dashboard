@@ -111,13 +111,13 @@ if page == "Dashboard":
     st.bar_chart(status_counts)
 
     st.subheader(
-"Current Stock by Item"
+        "Current Stock by Item"
 )
 
     st.bar_chart(
     df.set_index("Item Name")[
         "Current Stock"
-]
+    ]
 )
 
 elif page == "Critical Items":
@@ -155,4 +155,3 @@ if question:
     st.info(
         "AI assistant will be connected next."
 )
-
