@@ -1,6 +1,34 @@
 import streamlit as st
 import pandas as pd
+st.set_page_config(
+page_title="Inventory Dashboard",
+page_icon="📦",
+layout="wide"
+)
 
+st.markdown("""
+<style>
+.main {
+padding-top: 1rem;
+}
+
+h1 {
+color: #4CAF50;
+}
+
+[data-testid="metric-container"] {
+background-color: #262730;
+border: 1px solid #4CAF50;
+padding: 15px;
+border-radius: 10px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+df = pd.read_excel("inventory.xlsx")
+
+
+df["Stock Value"] = df["Current Stock"] * df["Unit Cost"]
 df = pd.read_excel("inventory.xlsx")
 
 df["Stock Value"] = df["Current Stock"] * df["Unit Cost"]
@@ -12,13 +40,19 @@ def get_status(row):
         return "Over Stock"
     else:
         return "Normal"
+
 df["Status"] = df.apply(get_status, axis=1)
+
+df["Suggested Order Qty"] = (
+df["Max Stock"] - df["Current Stock"]
+).clip(lower=0)
 
 total_stock_value = df["Stock Value"].sum()
 low_stock_count = len(df[df["Current Stock"] < df["Min Stock"]])
 over_stock_count = len(df[df["Current Stock"] > df["Max Stock"]])
 
-st.title("Inventory Dashboard")
+st.title("📦 Inventory Dashboard")
+st.caption("Daily Stock Monitoring & Analysis")
 
 col1, col2, col3 = st.columns(3)
 
@@ -43,4 +77,3 @@ st.subheader("Current Stock by Item")
 st.bar_chart(
 df.set_index("Item Name")["Current Stock"]
 )
-
