@@ -129,6 +129,7 @@ st.dataframe(
     critical_items,
     use_container_width=True
 )
+
 elif page == "Inventory Table":
     
     st.subheader("📋 Full Inventory")
