@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-df = pd.read_excel(inventory.xlsx)
+df = pd.read_excel("inventory.xlsx")
 
 df["Stock Value"] = df["Current Stock"] * df["Unit Cost"]
 
