@@ -125,9 +125,7 @@ if page == "Critical Items":
         df["Status"] == "Low Stock"
 ]
 
-st.dataframe(
-    critical_items,
-    use_container_width=True
+st.dataframe(critical_items,use_container_width=True
 )
 
 if page == "Inventory Table":
