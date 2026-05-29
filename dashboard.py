@@ -119,7 +119,6 @@ if page == "Dashboard":
         "Current Stock"
     ]
 )
-
 elif page == "Critical Items":
 
     st.subheader(
@@ -139,9 +138,8 @@ elif page == "Inventory Table":
     st.subheader("📋 Full Inventory")
 
     st.dataframe(
-    df,
-    use_container_width=True
-)
+    df,use_container_width=True
+    )
 
 elif page == "AI Assistant":
 
