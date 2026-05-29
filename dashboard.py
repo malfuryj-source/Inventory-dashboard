@@ -1,17 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-uploaded_file = st.file_uploader(
-"Upload Inventory File",
-type=["xlsx"]
-)
-
-if uploaded_file is not None:
-    df = pd.read_excel(uploaded_file)
-
-else:
-        st.info("Please upload an Excel file")
-        st.stop()
+ df = pd.read_excel(inventory.xlsx)
 
 df["Stock Value"] = df["Current Stock"] * df["Unit Cost"]
 
