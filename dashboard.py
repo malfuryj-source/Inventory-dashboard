@@ -5,6 +5,14 @@ df = pd.read_excel("inventory.xlsx")
 
 df["Stock Value"] = df["Current Stock"] * df["Unit Cost"]
 
+def get_status(row):
+    if row["Current Stock"] < row["Min Stock"]:
+        return "Low Stock"
+    elif row["Current Stock"] > row["Max Stock"]:
+        return "Over Stock"
+    else:
+        return "Normal"
+
 total_stock_value = df["Stock Value"].sum()
 low_stock_count = len(df[df["Current Stock"] < df["Min Stock"]])
 over_stock_count = len(df[df["Current Stock"] > df["Max Stock"]])
