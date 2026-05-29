@@ -91,9 +91,6 @@ st.bar_chart(status_counts)
 st.dataframe(df)
 st.subheader("Current Stock by Item")
 
-st.bar_chart(
-df.set_index("Item Name")["Current Stock"]
-)
 if page == "Dashboard":
 
     st.subheader("Inventory Data")
