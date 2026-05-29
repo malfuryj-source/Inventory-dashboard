@@ -96,70 +96,63 @@ df.set_index("Item Name")["Current Stock"]
 )
 if page == "Dashboard":
 
-st.subheader("Inventory Data")
+    st.subheader("Inventory Data")
 
-st.dataframe(
-df,
-use_container_width=True
+    st.dataframe(
+        df,
+        use_container_width=True
 )
 
-st.subheader(
-"Stock Status Distribution"
+    st.subheader("Stock Status Distribution")
+
+    status_counts = (df["Status"].value_counts()
 )
 
-status_counts = (
-df["Status"].value_counts()
-)
+    st.bar_chart(status_counts)
 
-st.bar_chart(status_counts)
-
-st.subheader(
+    st.subheader(
 "Current Stock by Item"
 )
 
-st.bar_chart(
-df.set_index("Item Name")[
-"Current Stock"
+    st.bar_chart(
+    df.set_index("Item Name")[
+        "Current Stock"
 ]
 )
 
 elif page == "Critical Items":
 
-st.subheader(
-"🚨 Critical Items"
-)
+    st.subheader(
+    "🚨 Critical Items")
 
-critical_items = df[
-df["Status"] == "Low Stock"
+    critical_items = df[
+        df["Status"] == "Low Stock"
 ]
 
 st.dataframe(
-critical_items,
-use_container_width=True
+    critical_items,
+    use_container_width=True
 )
 
 elif page == "Inventory Table":
 
-st.subheader(
-"📋 Full Inventory"
-)
+    st.subheader("📋 Full Inventory")
 
-st.dataframe(
-df,
-use_container_width=True
+    st.dataframe(
+    df,
+    use_container_width=True
 )
 
 elif page == "AI Assistant":
 
-st.subheader(
-"🤖 AI Assistant"
-)
+    st.subheader("🤖 AI Assistant")
 
-question = st.text_input(
-"Ask about inventory"
+    question = st.text_input(
+    "Ask about inventory"
 )
 
 if question:
-st.info(
-"AI assistant will be connected next."
+    st.info(
+        "AI assistant will be connected next."
 )
+
